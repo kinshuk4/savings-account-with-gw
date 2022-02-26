@@ -8,7 +8,7 @@ spring:
     active: native
   security:
     user:
-      password: admin
+      password: admin #TODO: Make password configurable
 
 server:
   port: 8001
