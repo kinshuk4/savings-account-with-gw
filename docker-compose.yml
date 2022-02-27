@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13-alpine@sha256:a70babcd0e8f86272c35d6efcf8070c597c1f31b3d19727eece213a09929dd55
+    environment:
+      POSTGRES_DB: ${RDS_DBNAME}
+      POSTGRES_USER: ${RDS_USERNAME}
+      POSTGRES_PASSWORD: ${RDS_PASSWORD}
+      PGPORT: ${RDS_PORT}
+    ports:
+      - ${RDS_PORT}:${RDS_PORT}
+    volumes:
+      - /var/lib/postgresql/data
