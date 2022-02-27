@@ -1,17 +1,33 @@
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 20000
+server:
+  port: 8080
 
-ribbon:
-  ReadTimeout: 20000
-  ConnectTimeout: 20000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8002/eureka/
+              
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: balance-service
+        uri: lb://balance-service
+        predicates:
+        - Path=/savings/**
+        filters:
+        - RewritePath=/savings/(?<path>.*), /$\{path}
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 
-zuul:
-  ignoredServices: '*'
-  host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
+springdoc:
+  swagger-ui:
+    urls:
+      - name: balance
+        url: /v3/api-docs/balance
