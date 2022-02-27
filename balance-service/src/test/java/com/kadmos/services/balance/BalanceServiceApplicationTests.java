@@ -1,4 +1,4 @@
-package com.kadmos.balanceservice;
+package com.kadmos.services.balance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

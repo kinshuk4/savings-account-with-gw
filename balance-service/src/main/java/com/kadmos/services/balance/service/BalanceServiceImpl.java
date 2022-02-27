@@ -1,10 +1,10 @@
-package com.kadmos.balanceservice.service;
+package com.kadmos.services.balance.service;
 
-import com.kadmos.balanceservice.controller.dto.BalanceDTO;
-import com.kadmos.balanceservice.exception.AccountNotFound;
-import com.kadmos.balanceservice.exception.InsufficientBalanceException;
-import com.kadmos.balanceservice.model.AccountMaster;
-import com.kadmos.balanceservice.repo.BalanceRepository;
+import com.kadmos.services.balance.controller.dto.BalanceDTO;
+import com.kadmos.services.balance.exception.AccountNotFound;
+import com.kadmos.services.balance.exception.InsufficientBalanceException;
+import com.kadmos.services.balance.model.AccountMaster;
+import com.kadmos.services.balance.repo.BalanceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;

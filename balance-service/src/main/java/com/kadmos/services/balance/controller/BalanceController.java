@@ -1,8 +1,8 @@
-package com.kadmos.balanceservice.controller;
+package com.kadmos.services.balance.controller;
 
-import com.kadmos.balanceservice.controller.dto.BalanceDTO;
-import com.kadmos.balanceservice.model.AccountMaster;
-import com.kadmos.balanceservice.service.BalanceService;
+import com.kadmos.services.balance.controller.dto.BalanceDTO;
+import com.kadmos.services.balance.model.AccountMaster;
+import com.kadmos.services.balance.service.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

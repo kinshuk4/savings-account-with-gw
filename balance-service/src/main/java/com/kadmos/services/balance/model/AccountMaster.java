@@ -1,4 +1,4 @@
-package com.kadmos.balanceservice.model;
+package com.kadmos.services.balance.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

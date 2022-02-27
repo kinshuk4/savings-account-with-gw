@@ -1,4 +1,4 @@
-package com.kadmos.balanceservice.controller.dto;
+package com.kadmos.services.balance.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.kadmos.balanceservice.exception;
+package com.kadmos.services.balance.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
