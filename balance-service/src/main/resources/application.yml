@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: balance-service
+  datasource:
+    url: jdbc:postgresql://localhost:54320/savings
+    username: savingsuser
+    password: password
+
+# Register in Eureka Server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
