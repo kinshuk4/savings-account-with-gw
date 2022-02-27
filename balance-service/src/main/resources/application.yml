@@ -8,6 +8,8 @@ spring:
     url: jdbc:postgresql://localhost:54320/savings
     username: savingsuser
     password: password
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 # Register in Eureka Server
 eureka:
