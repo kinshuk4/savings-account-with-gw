@@ -1,6 +1,8 @@
 package com.kadmos.balanceservice.service;
 
 import com.kadmos.balanceservice.controller.dto.BalanceDTO;
+import com.kadmos.balanceservice.exception.AccountNotFound;
+import com.kadmos.balanceservice.exception.InsufficientBalanceException;
 import com.kadmos.balanceservice.model.AccountMaster;
 import com.kadmos.balanceservice.repo.BalanceRepository;
 import org.springframework.stereotype.Service;
@@ -25,9 +27,13 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public AccountMaster update(String accountId, BalanceDTO entity) throws Exception {
-        AccountMaster item = balanceRepository.findById(accountId).orElseThrow(Exception::new);
-        item.setAmount(item.getAmount() + entity.getAmountChange());
-        return balanceRepository.save(item);
+    public AccountMaster update(String accountId, BalanceDTO entity) throws AccountNotFound, InsufficientBalanceException {
+        AccountMaster accountMaster = balanceRepository.findById(accountId).orElseThrow(AccountNotFound::new);
+        if (entity.getAmount() < 0 && Math.abs(entity.getAmount()) > accountMaster.getBalance()){
+            throw new InsufficientBalanceException();
+        }
+
+        accountMaster.setBalance(accountMaster.getBalance() + entity.getAmount());
+        return balanceRepository.save(accountMaster);
     }
 }

@@ -17,5 +17,5 @@ public class AccountMaster {
 
     @Id
     private String accountId;
-    private double amount;
+    private double balance;
 }
