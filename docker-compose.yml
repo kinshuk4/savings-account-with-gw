@@ -11,3 +11,8 @@ services:
       - ${RDS_PORT}:${RDS_PORT}
     volumes:
       - /var/lib/postgresql/data
+  config-service:
+    container_name: config-service
+    build: config-service
+    ports:
+      - "8001:8001"
