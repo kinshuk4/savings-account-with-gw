@@ -1,21 +1,5 @@
-server:
-  port: 8081
-
 spring:
   application:
     name: balance-service
-  datasource:
-    url: jdbc:postgresql://localhost:54320/savings
-    username: savingsuser
-    password: password
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-
-# Register in Eureka Server
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:1111/eureka
+  config:
+    import: "optional:configserver:http://localhost:8001"

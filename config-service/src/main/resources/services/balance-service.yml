@@ -1,0 +1,21 @@
+server:
+  port: 8081 #TODO: change back to 8081 when port is available again
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54320/savings
+    username: savingsuser
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8002/eureka/
+
+springdoc:
+  packagesToScan: com.kadmos.services.balance
