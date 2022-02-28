@@ -3,14 +3,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:54320/savings
-    username: savingsuser
-    password: password
+    url: jdbc:postgresql://${RDS_HOST}:${RDS_PORT}/${RDS_DBNAME}
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
 
 eureka:
   client:
