@@ -4,5 +4,5 @@ mvn-build:
 	mvn clean package -Dmaven.test.skip
 
 mvn-clean:
-	@echo "---> Building maven jars"
-	mvn clean package -Dmaven.test.skip
+	@echo "---> Cleaning maven jars"
+	mvn clean
