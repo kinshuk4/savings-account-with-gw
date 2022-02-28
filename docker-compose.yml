@@ -14,5 +14,58 @@ services:
   config-service:
     container_name: config-service
     build: config-service
+    environment:
+      DISCOVERY_SERVICE: ${DISCOVERY_SERVICE}
     ports:
       - "8001:8001"
+  discovery-service:
+    container_name: discovery-service
+    build: discovery-service
+    environment:
+      CONFIG_SERVICE: ${CONFIG_SERVICE}
+      DISCOVERY_SERVICE: ${DISCOVERY_SERVICE}
+    ports:
+      - "8002:8002"
+    depends_on:
+      - config-service
+  api-gateway:
+    container_name: api-gateway
+    build: api-gateway
+    environment:
+      CONFIG_SERVICE: ${CONFIG_SERVICE}
+      DISCOVERY_SERVICE: ${DISCOVERY_SERVICE}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - config-service
+      - discovery-service
+  balance-service-a:
+    container_name: balance-service-a
+    build: balance-service
+    environment:
+      CONFIG_SERVICE: ${CONFIG_SERVICE}
+      DISCOVERY_SERVICE: ${DISCOVERY_SERVICE}
+      RDS_DBNAME: ${RDS_DBNAME}
+      RDS_USERNAME: ${RDS_USERNAME}
+      RDS_PASSWORD: ${RDS_PASSWORD}
+      RDS_PORT: ${RDS_PORT}
+      RDS_HOST: ${RDS_HOST}
+      spring.application.name: balance-service-a
+    ports:
+      - "8081:8081"
+    depends_on:
+      - config-service
+      - discovery-service
+      - db
+  balance-service-b:
+    container_name: balance-service-b
+    build: balance-service
+    environment:
+      CONFIG_SERVICE: ${CONFIG_SERVICE}
+      DISCOVERY_SERVICE: ${DISCOVERY_SERVICE}
+    ports:
+      - "8082:8082"
+    depends_on:
+      - config-service
+      - discovery-service
+      - db
