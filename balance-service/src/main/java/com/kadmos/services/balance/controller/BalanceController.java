@@ -4,6 +4,8 @@ import com.kadmos.services.balance.controller.dto.BalanceDTO;
 import com.kadmos.services.balance.model.AccountMaster;
 import com.kadmos.services.balance.service.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 // TODO: can use mapper for DTO to model and vice versa
@@ -11,20 +13,21 @@ import org.springframework.web.bind.annotation.*;
 public class BalanceController {
     private final BalanceService balanceService;
 
+    @Value("${ACCOUNT_ID}")
+    private String accountId;
+
     @Autowired
     public BalanceController(BalanceService balanceService) {
         this.balanceService = balanceService;
     }
 
-    @GetMapping("/savings/{accountId}/balance")
-    public BalanceDTO getBalanceForAccount(@PathVariable("accountId") String accountId) throws Exception {
-        AccountMaster accountMaster = balanceService.findById(accountId).orElseThrow(Exception::new);
-        return new BalanceDTO(accountMaster.getBalance());
+    @GetMapping("/balance")
+    public AccountMaster getBalanceForAccount() throws Exception {
+        return balanceService.findById(accountId).orElseThrow(Exception::new);
     }
 
-    @PostMapping("/savings/{accountId}/balance")
-    public BalanceDTO updateBalance(@PathVariable("accountId") String accountId, @RequestBody BalanceDTO balanceDTO) throws Exception {
-        AccountMaster accountMaster = balanceService.update(accountId, balanceDTO);
-        return new BalanceDTO(accountMaster.getBalance());
+    @PostMapping("/balance")
+    public AccountMaster updateBalance(@RequestBody BalanceDTO balanceDTO) throws Exception {
+        return balanceService.update(accountId, balanceDTO);
     }
 }
