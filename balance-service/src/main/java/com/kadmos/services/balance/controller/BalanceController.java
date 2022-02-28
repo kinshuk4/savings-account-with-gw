@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-// TODO: can use mapper for DTO to model and vice versa
 @RestController
 public class BalanceController {
     private final BalanceService balanceService;
