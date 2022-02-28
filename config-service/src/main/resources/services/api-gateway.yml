@@ -14,13 +14,13 @@ spring:
           enabled: true
       routes:
       - id: balance-service-a
-        uri: lb://balance-service
+        uri: lb://balance-service-a
         predicates:
         - Path=/savings/a/**
         filters:
         - RewritePath=/savings/a/(?<path>.*), /$\{path}
       - id: balance-service-b
-        uri: lb://balance-service
+        uri: lb://balance-service-b
         predicates:
           - Path=/savings/b/**
         filters:
