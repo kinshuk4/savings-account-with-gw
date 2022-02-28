@@ -6,15 +6,6 @@ eureka:
     serviceUrl:
       defaultZone: http://${DISCOVERY_SERVICE}:8002/eureka/
 
-logging:
-  level:
-    reactor:
-      netty: INFO
-    org:
-      springframework:
-        cloud:
-          gateway: TRACE
-
 spring:
   cloud:
     gateway:
