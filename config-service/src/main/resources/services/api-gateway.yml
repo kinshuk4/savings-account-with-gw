@@ -13,12 +13,18 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: balance-service
+      - id: balance-service-a
         uri: lb://balance-service
         predicates:
-        - Path=/savings/**
+        - Path=/savings/a/**
         filters:
-        - RewritePath=/savings/(?<path>.*), /$\{path}
+        - RewritePath=/savings/a/(?<path>.*), /$\{path}
+      - id: balance-service-b
+        uri: lb://balance-service
+        predicates:
+          - Path=/savings/b/**
+        filters:
+          - RewritePath=/savings/b/(?<path>.*), /$\{path}
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
